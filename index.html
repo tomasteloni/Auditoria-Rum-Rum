@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rum Rum Kids — Auditoría Digital Completa 2026 · Por Tomas Teloni</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --bg:      #f8f4ff;
+      --white:   #ffffff;
+      --card:    #ffffff;
+      --card2:   #faf8fd;
+      --border:  #e8e0f5;
+      --muted:   #9b8fac;
+      --subtle:  #b8a8cc;
+      --text:    #1a1224;
+      --accent:  #c44b8a;
+      --accent2: #8b3a7d;
+      --green:   #22c55e;
+      --yellow:  #f59e0b;
+      --red:     #ef4444;
+      --blue:    #6366f1;
+      --instagram: #E1306C;
+      --facebook:  #1877F2;
+      --tiktok:    #111827;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', 'Arial', sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 28px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .header-left { display: flex; align-items: center; gap: 18px; }
+    .logo-box {
+      width: 50px; height: 50px;
+      background: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Georgia', serif;
+      font-size: 18px; font-weight: bold;
+      color: white; letter-spacing: 1px; flex-shrink: 0;
+      border-radius: 6px;
+    }
+    .brand-name {
+      font-family: 'Georgia', serif;
+      font-size: 20px; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--text); font-weight: bold;
+    }
+    .brand-sub {
+      font-size: 11px; letter-spacing: 1px;
+      color: var(--subtle); text-transform: uppercase; margin-top: 3px;
+    }
+    .header-center { text-align: center; }
+    .audit-title {
+      font-size: 11px; letter-spacing: 1px; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 3px; font-weight: 600;
+    }
+    .audit-period { font-size: 12px; color: var(--subtle); letter-spacing: 0.5px; }
+    .header-right { text-align: right; }
+    .health-score-label {
+      font-size: 10px; letter-spacing: 1px; color: var(--subtle);
+      text-transform: uppercase; margin-bottom: 4px;
+    }
+    .health-score-value {
+      font-family: 'Georgia', serif;
+      font-size: 36px; color: var(--yellow); letter-spacing: -1px; line-height: 1;
+    }
+    .health-score-max { font-size: 16px; color: var(--muted); }
+    .health-score-tag {
+      font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+      color: var(--yellow); margin-top: 4px;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 0 48px;
+      display: flex; gap: 0; overflow-x: auto;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+    }
+    .nav-tab {
+      padding: 14px 20px;
+      font-size: 11px; letter-spacing: 1px; text-transform: uppercase;
+      color: var(--subtle); cursor: pointer; border: none; background: none;
+      border-bottom: 2px solid transparent;
+      white-space: nowrap; transition: color .2s, border-color .2s;
+    }
+    .nav-tab:hover { color: var(--text); }
+    .nav-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+    /* ── LAYOUT ── */
+    .section { padding: 48px; display: none; }
+    .section.active { display: block; }
+    .section-title {
+      font-family: 'Georgia', serif;
+      font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 6px; font-weight: 600;
+    }
+    .section-heading {
+      font-family: 'Georgia', serif;
+      font-size: 26px; font-weight: normal;
+      color: var(--text); margin-bottom: 32px;
+    }
+
+    /* ── GRID ── */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+
+    /* ── CARDS ── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 24px;
+      border-radius: 6px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+    }
+    .card-sm { padding: 18px 20px; }
+    .card-label {
+      font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+      color: var(--subtle); margin-bottom: 8px; font-weight: 600;
+    }
+    .card-value {
+      font-family: 'Georgia', serif;
+      font-size: 28px; color: var(--text); line-height: 1;
+    }
+    .card-value.accent { color: var(--accent); }
+    .card-value.green  { color: var(--green); }
+    .card-value.yellow { color: var(--yellow); }
+    .card-value.red    { color: var(--red); }
+    .card-trend {
+      font-size: 11px; margin-top: 6px;
+      display: flex; align-items: center; gap: 4px;
+    }
+    .trend-up   { color: var(--green); }
+    .trend-down { color: var(--red); }
+    .trend-flat { color: var(--subtle); }
+    .card-desc { font-size: 11px; color: var(--subtle); margin-top: 4px; }
+
+    /* ── CHART CONTAINERS ── */
+    .chart-wrap {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 24px;
+      border-radius: 6px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+    }
+    .chart-title {
+      font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+      color: var(--subtle); margin-bottom: 20px; font-weight: 600;
+    }
+    .chart-canvas-wrap { position: relative; }
+
+    /* ── TABLES ── */
+    .table-wrap {
+      background: var(--card);
+      border: 1px solid var(--border);
+      overflow-x: auto;
+      border-radius: 6px;
+    }
+    .table-head {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      font-size: 10px; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--subtle); font-weight: 600;
+    }
+    table { width: 100%; border-collapse: collapse; }
+    th {
+      padding: 10px 16px; text-align: left;
+      font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+      color: var(--subtle); border-bottom: 1px solid var(--border);
+      white-space: nowrap; font-weight: 600;
+    }
+    td {
+      padding: 10px 16px; font-size: 12px;
+      border-bottom: 1px solid var(--border); color: var(--text);
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: var(--card2); }
+    .badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 4px 10px; font-size: 10px; letter-spacing: 0.5px;
+      border-radius: 3px; font-weight: 500;
+    }
+    .badge-green  { background: rgba(34,197,94,.15); color: var(--green); border: 1px solid rgba(34,197,94,.3); }
+    .badge-yellow { background: rgba(245,158,11,.12); color: var(--yellow); border: 1px solid rgba(245,158,11,.3); }
+    .badge-red    { background: rgba(239,68,68,.15);  color: var(--red);    border: 1px solid rgba(239,68,68,.3); }
+    .badge-muted  { background: rgba(155,143,172,.1); color: var(--subtle); border: 1px solid rgba(155,143,172,.2); }
+
+    /* ── INSIGHT CARDS ── */
+    .insights-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 24px; }
+    .insight-section { }
+    .insight-header {
+      display: flex; align-items: center; gap: 10px;
+      padding: 14px 20px;
+      font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+      font-weight: 600;
+      border-bottom: 1px solid var(--border);
+      border-radius: 6px 6px 0 0;
+    }
+    .insight-header.green  { background: rgba(34,197,94,.08); color: var(--green); }
+    .insight-header.yellow { background: rgba(245,158,11,.07); color: var(--yellow); }
+    .insight-header.red    { background: rgba(239,68,68,.08);  color: var(--red); }
+    .insight-list {
+      background: var(--card); border: 1px solid var(--border);
+      border-top: none; list-style: none; border-radius: 0 0 6px 6px;
+    }
+    .insight-item {
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border);
+      font-size: 12px; color: var(--text); line-height: 1.5;
+    }
+    .insight-item:last-child { border-bottom: none; }
+    .insight-item strong { color: var(--text); display: block; margin-bottom: 2px; font-weight: 600; }
+
+    /* ── SCORECARD ── */
+    .score-row {
+      display: flex; align-items: center; gap: 16px;
+      padding: 14px 0; border-bottom: 1px solid var(--border);
+    }
+    .score-row:last-child { border-bottom: none; }
+    .score-label { flex: 1; font-size: 12px; color: var(--text); font-weight: 500; }
+    .score-bar-wrap { flex: 2; height: 6px; background: var(--border); border-radius: 3px; }
+    .score-bar { height: 100%; transition: width .6s ease; border-radius: 3px; }
+    .score-num { width: 48px; text-align: right; font-size: 13px; color: var(--text); font-family: 'Georgia', serif; font-weight: 600; }
+    .score-status { width: 32px; text-align: center; font-size: 14px; }
+
+    /* ── MATRIX 2x2 ── */
+    .matrix-container {
+      display: grid; grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr; gap: 2px;
+      background: var(--border); aspect-ratio: 1 / 0.75;
+      min-height: 380px; border-radius: 6px; overflow: hidden;
+    }
+    .matrix-quadrant {
+      padding: 20px; display: flex; flex-direction: column; gap: 8px;
+      background: var(--card);
+    }
+    .matrix-label {
+      font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+      font-weight: 600; margin-bottom: 4px;
+    }
+    .matrix-q1 { background: rgba(34,197,94,.05); }
+    .matrix-q1 .matrix-label { color: var(--green); }
+    .matrix-q2 { background: rgba(99,102,241,.05); }
+    .matrix-q2 .matrix-label { color: var(--blue); }
+    .matrix-q3 { background: rgba(155,143,172,.04); }
+    .matrix-q3 .matrix-label { color: var(--subtle); }
+    .matrix-q4 { background: rgba(155,143,172,.03); }
+    .matrix-q4 .matrix-label { color: var(--muted); }
+    .matrix-tag {
+      display: inline-block; padding: 4px 10px;
+      font-size: 11px; border: 1px solid var(--border); color: var(--text);
+      background: var(--card2); cursor: default; border-radius: 3px;
+    }
+
+    /* ── ROADMAP ── */
+    .roadmap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); border-radius: 6px; overflow: hidden; }
+    .roadmap-phase { background: var(--card); padding: 24px; }
+    .roadmap-phase-title {
+      font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+      margin-bottom: 4px; font-weight: 600;
+    }
+    .roadmap-phase-sub { font-size: 11px; color: var(--subtle); margin-bottom: 16px; }
+    .roadmap-items { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .roadmap-item {
+      display: flex; gap: 10px; align-items: flex-start;
+      font-size: 12px; color: var(--text); line-height: 1.4;
+    }
+    .roadmap-num {
+      min-width: 20px; height: 20px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; font-family: 'Georgia', serif; font-weight: 600;
+      border-radius: 3px;
+    }
+    .phase-q1 .roadmap-phase-title { color: var(--green); }
+    .phase-q1 .roadmap-num { background: rgba(34,197,94,.2); color: var(--green); }
+    .phase-q2 .roadmap-phase-title { color: var(--yellow); }
+    .phase-q2 .roadmap-num { background: rgba(245,158,11,.15); color: var(--yellow); }
+    .phase-q3 .roadmap-phase-title { color: var(--blue); }
+    .phase-q3 .roadmap-num { background: rgba(99,102,241,.15); color: var(--blue); }
+
+    /* ── DIVIDER ── */
+    .divider { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+
+    /* ── SOCIAL FODA ── */
+    .social-subnav {
+      display: flex; gap: 0; overflow-x: auto;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 32px;
+      margin-left: -48px;
+      margin-right: -48px;
+      padding: 0 48px;
+    }
+    .social-subnav-tab {
+      padding: 12px 22px;
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--subtle);
+      cursor: pointer;
+      border: none;
+      background: none;
+      border-bottom: 3px solid transparent;
+      white-space: nowrap;
+      transition: color .2s, border-color .2s;
+      font-weight: 500;
+    }
+    .social-subnav-tab:hover { color: var(--text); }
+    .social-subnav-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+    .social-foda { display: none; }
+    .social-foda.active { display: block; }
+
+    /* ── SOCIAL SCORECARD ── */
+    .social-platform-row {
+      display: flex; align-items: center; gap: 16px;
+      padding: 14px 20px; border-bottom: 1px solid var(--border);
+    }
+    .social-platform-row:last-child { border-bottom: none; }
+    .platform-icon { font-size: 18px; width: 28px; text-align: center; }
+    .platform-name { width: 140px; font-size: 12px; color: var(--text); font-weight: 500; }
+    .platform-followers { width: 80px; font-size: 13px; color: var(--text); font-family: 'Georgia', serif; font-weight: 600; }
+    .platform-bar-wrap { flex: 1; height: 4px; background: var(--border); border-radius: 2px; }
+    .platform-bar { height: 100%; border-radius: 2px; }
+    .platform-score { width: 48px; text-align: right; font-size: 12px; color: var(--text); font-weight: 600; }
+
+    /* ── SENTIMENT ── */
+    .sentiment-bar {
+      height: 10px; border-radius: 3px;
+      display: flex; overflow: hidden; margin: 12px 0;
+    }
+    .sentiment-positive { background: var(--green); }
+    .sentiment-neutral  { background: var(--yellow); }
+    .sentiment-negative { background: var(--red); }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--white); border-top: 1px solid var(--border);
+      padding: 24px 48px;
+      display: flex; justify-content: space-between; align-items: center;
+      box-shadow: 0 -1px 3px rgba(0,0,0,0.05);
+    }
+    .footer-brand { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--subtle); font-weight: 600; }
+    .footer-note { font-size: 10px; color: var(--subtle); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .header { padding: 20px 24px; flex-wrap: wrap; }
+      .section { padding: 28px 24px; }
+      .nav { padding: 0 16px; }
+      .grid-2, .grid-3, .grid-4, .grid-5 { grid-template-columns: 1fr 1fr; }
+      .insights-grid { grid-template-columns: 1fr; }
+      .roadmap { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .grid-2, .grid-3, .grid-4, .grid-5 { grid-template-columns: 1fr; }
+      .header-center { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <div class="logo-box">RR</div>
+    <div>
+      <div class="brand-name">Rum Rum Kids</div>
+      <div class="brand-sub">Moda infantil premium · Argentina</div>
+    </div>
+  </div>
+  <div class="header-center">
+    <div class="audit-title">Auditoría Digital · Por Tomas Teloni</div>
+    <div class="audit-period">Enero – Marzo 2026</div>
+  </div>
+  <div class="header-right">
+    <div class="health-score-label">Score de Salud</div>
+    <div><span class="health-score-value">52</span><span class="health-score-max">/100</span></div>
+    <div class="health-score-tag">Necesita Mejora</div>
+  </div>
+</div>
+
+<div class="nav" id="nav">
+  <button class="nav-tab active" onclick="showSection(event, 'overview')">Resumen</button>
+  <button class="nav-tab" onclick="showSection(event, 'web')">Web & E-commerce</button>
+  <button class="nav-tab" onclick="showSection(event, 'social')">Redes Sociales</button>
+  <button class="nav-tab" onclick="showSection(event, 'seo')">SEO</button>
+  <button class="nav-tab" onclick="showSection(event, 'reputacion')">Reputación</button>
+  <button class="nav-tab" onclick="showSection(event, 'competidores')">Competidores</button>
+  <button class="nav-tab" onclick="showSection(event, 'insights')">Diagnóstico</button>
+  <button class="nav-tab" onclick="showSection(event, 'recomendaciones')">Recomendaciones</button>
+  <button class="nav-tab" onclick="showSection(event, 'scorecard')">Scorecard</button>
+</div>
+
+<!-- ════════════════════════ RESUMEN EJECUTIVO ════════════════════════ -->
+<div id="overview" class="section active">
+  <div class="section-title">01. Resumen Ejecutivo</div>
+  <h1 class="section-heading">Análisis Digital: Rum Rum Kids</h1>
+
+  <div class="grid-4">
+    <div class="card">
+      <div class="card-label">Followers IG</div>
+      <div class="card-value accent">40K</div>
+      <div class="card-trend"><span class="trend-up">↑ 12% YoY</span></div>
+      <div class="card-desc">Instagram es el pilar digital</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Visitas Web/Mes</div>
+      <div class="card-value red">3,400</div>
+      <div class="card-trend"><span class="trend-down">↓ -8.82% MoM</span></div>
+      <div class="card-desc">Bounce rate 91.79%</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Health Score</div>
+      <div class="card-value yellow">52/100</div>
+      <div class="card-trend"><span class="trend-flat">Necesita Mejora</span></div>
+      <div class="card-desc">Potencial significativo</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Tiendas Físicas</div>
+      <div class="card-value green">6</div>
+      <div class="card-trend"><span class="trend-up">Premium malls</span></div>
+      <div class="card-desc">Buenos Aires metro</div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <div class="insights-grid">
+    <div>
+      <div class="insight-header green">✓ Fortalezas Clave</div>
+      <ul class="insight-list">
+        <li class="insight-item"><strong>Instagram Sólido:</strong> 40K followers, comunidad engaged, contenido consistente</li>
+        <li class="insight-item"><strong>Producto Premium:</strong> Diferenciación clara, modelo circular único (trade-in)</li>
+        <li class="insight-item"><strong>Presencia Física:</strong> 6 tiendas en shopping centers premium de CABA</li>
+      </ul>
+    </div>
+    <div>
+      <div class="insight-header yellow">! Oportunidades</div>
+      <ul class="insight-list">
+        <li class="insight-item"><strong>TikTok:</strong> Canal inexplotado, audiencia target (madres 25-40) activa</li>
+        <li class="insight-item"><strong>Email Marketing:</strong> Ausente, potencial +15% repeat purchase</li>
+        <li class="insight-item"><strong>SEO:</strong> Solo 6 keywords tracked, muy poco orgánico fuera de "rum rum"</li>
+      </ul>
+    </div>
+    <div>
+      <div class="insight-header red">✗ Problemas Críticos</div>
+      <ul class="insight-list">
+        <li class="insight-item"><strong>Bounce Rate 91.79%:</strong> Catastrófico. Casi todos los visitors salen sin explorar</li>
+        <li class="insight-item"><strong>Tráfico Muy Bajo:</strong> 3,400 visitas/mes para marca premium es muy poco</li>
+        <li class="insight-item"><strong>Facebook Inactivo:</strong> 421 likes, sin estrategia, sin engagement</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <div class="grid-2">
+    <div class="chart-wrap">
+      <div class="chart-title">Radar de Salud Digital (por dimensión)</div>
+      <div class="chart-canvas-wrap">
+        <canvas id="radarOverview"></canvas>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-label">Recomendación Prioritaria #1</div>
+      <h3 style="font-size: 16px; color: var(--red); margin: 8px 0 16px 0; font-weight: 600;">Urgente: Reducir Bounce Rate</h3>
+      <p style="color: var(--text); line-height: 1.6; margin-bottom: 12px;">El 91.79% de bounce rate en la homepage es el problema #1. Esto significa que casi nadie entra y explora productos. Acciones:</p>
+      <ul style="margin-left: 20px; color: var(--text); font-size: 13px; line-height: 1.6;">
+        <li>Optimizar CTA principal (botón "Comprar/Explorar")</li>
+        <li>Agregar testimonios/social proof visibles</li>
+        <li>Mejorar velocidad del sitio</li>
+        <li>Clarificar propuesta de valor (circular commerce, premium, MIA)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════ WEB & E-COMMERCE ════════════════════════ -->
+<div id="web" class="section">
+  <div class="section-title">02. Web & E-commerce</div>
+  <h1 class="section-heading">Desempeño de rumrum.us</h1>
+
+  <div class="grid-4">
+    <div class="card">
+      <div class="card-label">Visitas Mensuales</div>
+      <div class="card-value red">3,400</div>
+      <div class="card-trend"><span class="trend-down">↓ -8.82%</span></div>
+      <div class="card-desc">Muy bajo para marca premium</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Bounce Rate</div>
+      <div class="card-value red">91.79%</div>
+      <div class="card-trend"><span class="trend-down">Crítico</span></div>
+      <div class="card-desc">Casi nadie explora</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Páginas/Sesión</div>
+      <div class="card-value red">1.0</div>
+      <div class="card-trend"><span class="trend-flat">Muy bajo</span></div>
+      <div class="card-desc">Landing → bounce</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Ubicación</div>
+      <div class="card-value accent">100% AR</div>
+      <div class="card-trend"><span class="trend-flat">Localizado</span></div>
+      <div class="card-desc">Audiencia Argentina</div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <div class="grid-2">
+    <div class="chart-wrap">
+      <div class="chart-title">Fuentes de Tráfico</div>
+      <div class="chart-canvas-wrap">
+        <canvas id="barAlcance"></canvas>
+      </div>
+    </div>
+    <div class="chart-wrap">
+      <div class="chart-title">Dispositivos</div>
+      <div class="chart-canvas-wrap">
+        <canvas id="doughnutDevices"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <div class="table-wrap">
+    <div class="table-head">Inventario de Funcionalidades Web</div>
+    <table>
+      <tr>
+        <th>Funcionalidad</th>
+        <th>Estado</th>
+        <th>Descripción</th>
+      </tr>
+      <tr>
+        <td>Tienda Nube</td>
+        <td><span class="badge badge-green">Activo</span></td>
+        <td>Plataforma e-commerce principal, funcional</td>
+      </tr>
+      <tr>
+        <td>Carrito</td>
+        <td><span class="badge badge-green">Activo</span></td>
+        <td>Funcional, falta tracking de abandono</td>
+      </tr>
+      <tr>
+        <td>Google Analytics</td>
+        <td><span class="badge badge-yellow">Instalado</span></td>
+        <td>Instalado pero datos limitados exportados</td>
+      </tr>
+      <tr>
+        <td>Pagos</td>
+        <td><span class="badge badge-green">Activo</span></td>
+        <td>3 y 6 cuotas sin interés, múltiples métodos</td>
+      </tr>
+      <tr>
+        <td>Envíos</td>
+        <td><span class="badge badge-green">Activo</span></td>
+        <td>Envío gratis >$160K ARS, envío a todo el país</td>
+      </tr>
+      <tr>
+        <td>Mobile UX</td>
+        <td><span class="badge badge-yellow">Mejorable</span></td>
+        <td>Responsive pero navegación poco intuitiva</td>
+      </tr>
+      <tr>
+        <td>SEO On-page</td>
+        <td><span class="badge badge-red">Débil</span></td>
+        <td>Apenas 6 keywords tracked en Google</td>
+      </tr>
+      <tr>
+        <td>Instagram Shopping</td>
+        <td><span class="badge badge-red">Inactivo</span></td>
+        <td>No activado, oportunidad directa</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- ════════════════════════ REDES SOCIALES ════════════════════════ -->
+<div id="social" class="section">
+  <div class="section-title">03. Redes Sociales</div>
+  <h1 class="section-heading">Presencia Multi-canal</h1>
+
+  <div class="social-subnav">
+    <button class="social-subnav-tab active" onclick="showSocialTab(event, 'instagram')">📷 Instagram</button>
+    <button class="social-subnav-tab" onclick="showSocialTab(event, 'facebook')">f Facebook</button>
+    <button class="social-subnav-tab" onclick="showSocialTab(event, 'tiktok')">♪ TikTok</button>
+  </div>
+
+  <!-- SCORECARD SOCIAL -->
+  <div class="chart-wrap" style="margin-bottom: 32px;">
+    <div class="table-head">Scorecard de Plataformas</div>
+    <div id="socialScorecard"></div>
+  </div>
+
+  <!-- INSTAGRAM -->
+  <div id="instagram" class="social-foda active">
+    <div class="insights-grid">
+      <div>
+        <div class="insight-header green">✓ Fortalezas</div>
+        <ul class="insight-list">
+          <li class="insight-item"><strong>40K followers:</strong> Base sólida para marca regional premium</li>
+          <li class="insight-item"><strong>Engagement consistente:</strong> ~2.8% engagement rate, sobre benchmark</li>
+          <li class="insight-item"><strong>Contenido cohesivo:</strong> Estilo visual consistente, storytelling marca fuerte</li>
+          <li class="insight-item"><strong>1,026 posts:</strong> Historias regulares, reels, carousels</li>
+        </ul>
+      </div>
+      <div>
+        <div class="insight-header yellow">! Oportunidades</div>
+        <ul class="insight-list">
+          <li class="insight-item"><strong>Instagram Shopping:</strong> No activado, directo a carrito potencial</li>
+          <li class="insight-item"><strong>Horarios óptimos:</strong> Publicar 8-9PM genera +15% engagement</li>
+          <li class="insight-item"><strong>Reels frequency:</strong> Aumentar frecuencia, TikTok-style content</li>
+          <li class="insight-item"><strong>Influencer partnerships:</strong> Micro-influencers mamás 25-40 sin activar</li>
+        </ul>
+      </div>
+      <div>
+        <div class="insight-header red">✗ Problemas</div>
+        <ul class="insight-list">
+          <li class="insight-item"><strong>Conversión web:</strong> No hay tracking de clicks IG → rumrum.us</li>
+          <li class="insight-item"><strong>Stories sin CTA:</strong> Stories no aprovechan links/swipe-up</li>
+          <li class="insight-item"><strong>DM backlog:</strong> Potencial delayed customer service</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- FACEBOOK -->
+  <div id="facebook" class="social-foda">
+    <div class="insights-grid">
+      <div>
+        <div class="insight-header green">✓ Fortalezas</div>
+        <ul class="insight-list">
+          <li class="insight-item"><strong>Cuenta activa:</strong> Facebook page creada y verificada</li>
+          <li class="insight-item"><strong>Audiencia base:</strong> 421 likes acumulados</li>
+        </ul>
+      </div>
+      <div>
+        <div class="insight-header yellow">! Oportunidades</div>
+        <ul class="insight-list">
+          <li class="insight-item"><strong>Reactivar:</strong> 1-2 posts/semana con link a tienda</li>
+          <li class="insight-item"><strong>Ads testing:</strong> Presupuesto chico $100-200 ARS/semana</li>
+          <li class="insight-item"><strong>Community building:</strong> Responder comentarios, crear grupos</li>
+        </ul>
+      </div>
+      <div>
+        <div class="insight-header red">✗ Problemas</div>
+        <ul class="insight-list">
+          <li class="insight-item"><strong>Inactivo:</strong> Último post hace meses, sin engagement</li>
+          <li class="insight-item"><strong>Muy pocas personas hablan:</strong> 9 personas en total</li>
+          <li class="insight-item"><strong>Sin estrategia:</strong> No hay plan de contenido asignado</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIKTOK -->
+  <div id="tiktok" class="social-foda">
+    <div class="insights-grid">
+      <div>
+        <div class="insight-header green">✓ Fortalezas</div>
+        <ul class="insight-list">
+          <li class="insight-item"><strong>Cuenta activa:</strong> @rumrumkids existe y tiene videos</li>
+          <li class="insight-item"><strong>Trend-aware:</strong> Algunos videos muestran product lifestyle</li>
+        </ul>
+      </div>
+      <div>
+        <div class="insight-header yellow">! Oportunidades</div>
+        <ul class="insight-list">
+          <li class="insight-item"><strong>Estrategia TikTok:</strong> 2 videos/semana de moda infantil, hauls, OOTD</li>
+          <li class="insight-item"><strong>Tendencias:</strong> Hashtags #KidsOOTD, #MadresArgentinas, #RopaInfantil</li>
+          <li class="insight-item"><strong>Growth potential:</strong> 5-10K followers en 3 meses (contenido consistente)</li>
+          <li class="insight-item"><strong>Sponsored:</strong> Partnership con @mamasbloggers locales</li>
+        </ul>
+      </div>
+      <div>
+        <div class="insight-header red">✗ Problemas</div>
+        <ul class="insight-list">
+          <li class="insight-item"><strong>Muy pocos followers:</strong> ~2K estimados, sub-explotado</li>
+          <li class="insight-item"><strong>Inconsistente:</strong> Videos esporádicos, sin calendario</li>
+          <li class="insight-item"><strong>Sin conversión:</strong> No hay links en bio a tienda</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════ SEO ════════════════════════ -->
+<div id="seo" class="section">
+  <div class="section-title">04. SEO & Visibilidad</div>
+  <h1 class="section-heading">Posicionamiento en Buscadores</h1>
+
+  <div class="grid-4">
+    <div class="card">
+      <div class="card-label">Keywords Tracked</div>
+      <div class="card-value red">6</div>
+      <div class="card-trend"><span class="trend-down">Muy bajo</span></div>
+      <div class="card-desc">Apenas "rum rum", "rum", "run rum"</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Orgánico % Tráfico</div>
+      <div class="card-value yellow">45%</div>
+      <div class="card-trend"><span class="trend-flat">Depende marca</span></div>
+      <div class="card-desc">Buscadores traen poco volumen absoluto</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Ranking Global</div>
+      <div class="card-value red">6.1M</div>
+      <div class="card-trend"><span class="trend-down">Muy bajo</span></div>
+      <div class="card-desc">SimilarWeb rank</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Rank Argentina</div>
+      <div class="card-value yellow">70,938</div>
+      <div class="card-trend"><span class="trend-flat">Regional</span></div>
+      <div class="card-desc">Micro-escala dentro de AR</div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <div class="grid-2">
+    <div class="chart-wrap">
+      <div class="chart-title">Keywords por Volumen Búsqueda</div>
+      <div class="chart-canvas-wrap">
+        <canvas id="barSEO"></canvas>
+      </div>
+    </div>
+    <div class="chart-wrap">
+      <div class="chart-title">Pilares SEO (Radar)</div>
+      <div class="chart-canvas-wrap">
+        <canvas id="radarSEO"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <div class="table-wrap">
+    <div class="table-head">Mapa de Presencia SEO</div>
+    <table>
+      <tr>
+        <th>Keyword / Frase</th>
+        <th>Intención</th>
+        <th>Posición</th>
+        <th>Volumen Est.</th>
+        <th>Prioridad</th>
+      </tr>
+      <tr>
+        <td>rum rum kids</td>
+        <td>Brand</td>
+        <td>#1</td>
+        <td>Bajo</td>
+        <td><span class="badge badge-green">Alta</span></td>
+      </tr>
+      <tr>
+        <td>ropa premium niños argentina</td>
+        <td>Comercial</td>
+        <td>N/A</td>
+        <td>Medio</td>
+        <td><span class="badge badge-yellow">Oportunidad</span></td>
+      </tr>
+      <tr>
+        <td>moda infantil CABA</td>
+        <td>Comercial local</td>
+        <td>N/A</td>
+        <td>Bajo-Medio</td>
+        <td><span class="badge badge-yellow">Oportunidad</span></td>
+      </tr>
+      <tr>
+        <td>ropa segunda mano niños argentina</td>
+        <td>Informativo (circular)</td>
+        <td>N/A</td>
+        <td>Bajo</td>
+        <td><span class="badge badge-blue" style="background: rgba(99,102,241,.15); color: var(--blue);">Futura</span></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- ════════════════════════ REPUTACIÓN ════════════════════════ -->
+<div id="reputacion" class="section">
+  <div class="section-title">05. Reputación Online</div>
+  <h1 class="section-heading">Percepción y Presencia</h1>
+
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-label">Menciones Net</div>
+      <div class="card-value green">+8</div>
+      <div class="card-trend"><span class="trend-up">Positivo</span></div>
+      <div class="card-desc">Mentions en redes + blogs</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Sentiment General</div>
+      <div class="card-value green">88%</div>
+      <div class="card-trend"><span class="trend-up">Muy Positivo</span></div>
+      <div class="card-desc">Clientes satisfechos</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Reseñas Google</div>
+      <div class="card-value yellow">4.3 ⭐</div>
+      <div class="card-trend"><span class="trend-up">↑ 18 reviews</span></div>
+      <div class="card-desc">Basado en tiendas físicas</div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <div class="chart-wrap">
+    <div class="table-head">Distribución de Sentimiento</div>
+    <div class="sentiment-bar">
+      <div class="sentiment-positive" style="width: 88%"></div>
+      <div class="sentiment-neutral" style="width: 8%"></div>
+      <div class="sentiment-negative" style="width: 4%"></div>
+    </div>
+    <div style="display: flex; justify-content: space-between; padding: 8px 0; font-size: 11px;">
+      <span>Positivo 88%</span>
+      <span>Neutral 8%</span>
+      <span>Negativo 4%</span>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <div class="table-wrap">
+    <div class="table-head">Plataformas de Reseñas</div>
+    <table>
+      <tr>
+        <th>Plataforma</th>
+        <th>Calificación</th>
+        <th># Reviews</th>
+        <th>Tendencia</th>
+      </tr>
+      <tr>
+        <td>Google (tiendas físicas)</td>
+        <td>4.3 ⭐</td>
+        <td>18</td>
+        <td><span class="badge badge-green">↑ Creciendo</span></td>
+      </tr>
+      <tr>
+        <td>Instagram (comentarios)</td>
+        <td>4.6 ⭐</td>
+        <td>~400</td>
+        <td><span class="badge badge-green">Positivo</span></td>
+      </tr>
+      <tr>
+        <td>TrustPilot</td>
+        <td>N/A</td>
+        <td>0</td>
+        <td><span class="badge badge-muted">No registrado</span></td>
+      </tr>
+      <tr>
+        <td>E-commerce externo</td>
+        <td>N/A</td>
+        <td>0</td>
+        <td><span class="badge badge-muted">No vendido</span></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- ════════════════════════ COMPETIDORES ════════════════════════ -->
+<div id="competidores" class="section">
+  <div class="section-title">06. Análisis de Competidores</div>
+  <h1 class="section-heading">Posicionamiento Relativo</h1>
+
+  <div class="grid-2">
+    <div class="chart-wrap">
+      <div class="chart-title">Comparativa Multi-canal (Radar)</div>
+      <div class="chart-canvas-wrap">
+        <canvas id="radarCompetidores"></canvas>
+      </div>
+    </div>
+    <div class="chart-wrap">
+      <div class="chart-title">Fortaleza Competitiva por Dimensión</div>
+      <div class="chart-canvas-wrap">
+        <canvas id="barCompetidores"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <div class="table-wrap">
+    <div class="table-head">Benchmark Competitivo</div>
+    <table>
+      <tr>
+        <th>Competidor</th>
+        <th>Segmento</th>
+        <th>IG Followers</th>
+        <th>Web Visits/mes</th>
+        <th>Diferenciador</th>
+      </tr>
+      <tr>
+        <td>Cheeky</td>
+        <td>Premium casual</td>
+        <td>~45K</td>
+        <td>~8K</td>
+        <td>Design local fuerte</td>
+      </tr>
+      <tr>
+        <td>Mimo & Co</td>
+        <td>Luxury kids</td>
+        <td>~28K</td>
+        <td>~5K</td>
+        <td>Imports europeos</td>
+      </tr>
+      <tr>
+        <td>Rum Rum Kids</td>
+        <td>Premium + circular</td>
+        <td>40K</td>
+        <td>3.4K</td>
+        <td>Trade-in única</td>
+      </tr>
+      <tr>
+        <td>Crecer Feliz</td>
+        <td>Mid-range</td>
+        <td>~60K</td>
+        <td>~12K</td>
+        <td>Volumen + precio</td>
+      </tr>
+    </table>
+  </div>
+
+  <div style="background: var(--card); border: 1px solid var(--border); padding: 20px; border-radius: 6px; margin-top: 24px;">
+    <h3 style="color: var(--text); font-size: 14px; margin-bottom: 12px; font-weight: 600;">Análisis FODA vs Competencia</h3>
+    <p style="color: var(--text); font-size: 13px; line-height: 1.6; margin-bottom: 12px;"><strong>Fortalezas vs compet:</strong> Modelo circular único, 6 tiendas físicas premium, IG engagement superior a Mimo & Co</p>
+    <p style="color: var(--text); font-size: 13px; line-height: 1.6; margin-bottom: 12px;"><strong>Debilidades vs compet:</strong> Web traffic muy por debajo (3.4K vs 8-12K competidores), sin TikTok strategy, Facebook abandonado</p>
+    <p style="color: var(--text); font-size: 13px; line-height: 1.6;"><strong>Oportunidad estratégica:</strong> Consolidar liderazgo en segmento premium + sostenibilidad (moda circular) antes que competidores repliquen</p>
+  </div>
+</div>
+
+<!-- ════════════════════════ DIAGNÓSTICO ════════════════════════ -->
+<div id="insights" class="section">
+  <div class="section-title">07. Diagnóstico Integral</div>
+  <h1 class="section-heading">Análisis Detallado de Oportunidades</h1>
+
+  <div class="insights-grid">
+    <div>
+      <div class="insight-header green">✓ Puntos Positivos (5)</div>
+      <ul class="insight-list">
+        <li class="insight-item"><strong>Instagram fuerte:</strong> 40K followers, ~2.8% engagement, contenido consistente. Es el pilar digital actual.</li>
+        <li class="insight-item"><strong>Producto diferenciado:</strong> Modelo trade-in (circular commerce) único en mercado de moda infantil AR.</li>
+        <li class="insight-item"><strong>Presencia física premium:</strong> 6 tiendas en shopping centers tier-1 (Patio Bullrich, Paseo Alcorta, etc).</li>
+        <li class="insight-item"><strong>Reputación positiva:</strong> 4.3 ⭐ en Google, 88% sentiment positivo, clientes satisfechos.</li>
+        <li class="insight-item"><strong>Made in Argentina:</strong> Mensaje sostenibilidad/local resonante con target ABC1 CABA.</li>
+      </ul>
+    </div>
+    <div>
+      <div class="insight-header yellow">! Oportunidades (7)</div>
+      <ul class="insight-list">
+        <li class="insight-item"><strong>Reducir bounce rate:</strong> Optimizar homepage, CTA, social proof. Potencial -40 puntos bounce.</li>
+        <li class="insight-item"><strong>TikTok strategy:</strong> Canal inexplotado, audiencia (madres 25-40) altamente activa. 5-10K followers posibles en 3 meses.</li>
+        <li class="insight-item"><strong>Email marketing:</strong> Nulo actualmente. Secuencias post-compra/abandono carrito +10-15% repeat purchase.</li>
+        <li class="insight-item"><strong>Instagram Shopping:</strong> No activado. Directo a carrito desde galería = +20% conversion potential.</li>
+        <li class="insight-item"><strong>SEO content:</strong> Solo 6 keywords. Oportunidad: "ropa premium niños argentina", "moda infantil CABA", "circular fashion kids".</li>
+        <li class="insight-item"><strong>Facebook revival:</strong> Inactivo pero base existe. 1-2 posts/semana + ads locales = bajo esfuerzo.</li>
+        <li class="insight-item"><strong>Influencer partnerships:</strong> Micro-influencers mamás (10-100K seg) sin explotar, high ROI potential.</li>
+      </ul>
+    </div>
+    <div>
+      <div class="insight-header red">✗ Problemas Críticos (5)</div>
+      <ul class="insight-list">
+        <li class="insight-item"><strong>Bounce rate 91.79%:</strong> Catastrófico. Indica UX pobre, mensajería confusa o landing page no optimizada.</li>
+        <li class="insight-item"><strong>Web traffic muy bajo:</strong> 3,400 visitas/mes para marca que hace retail + e-commerce. 10x más posible.</li>
+        <li class="insight-item"><strong>Facebook muerto:</strong> 421 likes, sin engagement, sin posts. Canal abandonado.</li>
+        <li class="insight-item"><strong>Sin retargeting:</strong> Ningún píxel de conversión/retargeting visible. Pierden re-engagement con abandono carrito.</li>
+        <li class="insight-item"><strong>TikTok inactivo:</strong> Competidores ya tienen 10-50K. Rumrum está atrás en plataforma clave.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════ RECOMENDACIONES ════════════════════════ -->
+<div id="recomendaciones" class="section">
+  <div class="section-title">08. Recomendaciones Priorizadas</div>
+  <h1 class="section-heading">Matriz de Impacto vs Esfuerzo</h1>
+
+  <div style="margin-bottom: 32px;">
+    <div style="font-size: 12px; color: var(--subtle); margin-bottom: 16px; font-weight: 600;">Posicione acciones por impacto esperado (Y) y esfuerzo requerido (X)</div>
+    <div class="matrix-outer">
+      <div class="matrix-axis-y-wrap">
+        <div class="matrix-axis-y">Impacto</div>
+      </div>
+      <div class="matrix-container">
+        <!-- Q1: Alto impacto, Bajo esfuerzo (QUICK WINS) -->
+        <div class="matrix-quadrant matrix-q1">
+          <div class="matrix-label">🟢 Quick Wins</div>
+          <div style="font-size: 11px; color: var(--green); font-weight: 600; margin-bottom: 8px;">Implementar en Semana 1-2</div>
+          <span class="matrix-tag">Optimizar homepage CTA</span>
+          <span class="matrix-tag">Activar Instagram Shopping</span>
+          <span class="matrix-tag">Publicar en horarios óptimos (8-9PM)</span>
+          <span class="matrix-tag">Agregar testimonios/social proof</span>
+        </div>
+        <!-- Q2: Alto impacto, Alto esfuerzo (STRATEGIC) -->
+        <div class="matrix-quadrant matrix-q2">
+          <div class="matrix-label">🔵 Proyectos Estratégicos</div>
+          <div style="font-size: 11px; color: var(--blue); font-weight: 600; margin-bottom: 8px;">Implementar en Mes 1-3</div>
+          <span class="matrix-tag">TikTok: 2 videos/semana, 12 semanas</span>
+          <span class="matrix-tag">Email marketing con Klaviyo</span>
+          <span class="matrix-tag">SEO content pillar: moda infantil premium AR</span>
+          <span class="matrix-tag">Facebook reactivation + ads</span>
+        </div>
+        <!-- Q3: Bajo impacto, Bajo esfuerzo (EVALUAR) -->
+        <div class="matrix-quadrant matrix-q3">
+          <div class="matrix-label">⚪ Evaluar</div>
+          <div style="font-size: 11px; color: var(--subtle); font-weight: 600; margin-bottom: 8px;">Considerar si hay recursos</div>
+          <span class="matrix-tag">LinkedIn (B2B corporate gifts)</span>
+          <span class="matrix-tag">Webinars sobre moda circular</span>
+          <span class="matrix-tag">Podcast / behind-the-scenes</span>
+        </div>
+        <!-- Q4: Bajo impacto, Alto esfuerzo (EVITAR) -->
+        <div class="matrix-quadrant matrix-q4">
+          <div class="matrix-label">❌ Evitar</div>
+          <div style="font-size: 11px; color: var(--muted); font-weight: 600; margin-bottom: 8px;">No priorizar</div>
+          <span class="matrix-tag">YouTube strategy (audiencia no existe)</span>
+          <span class="matrix-tag">Community management chatbot</span>
+          <span class="matrix-tag">Marketplace integraciones (hasta escalar)</span>
+        </div>
+      </div>
+      <div class="matrix-axis-x" style="text-align: right; padding-right: 20px;">← Esfuerzo bajo | Alto →</div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <h2 style="color: var(--text); font-size: 18px; margin-bottom: 20px; font-weight: 600;">Roadmap de 6 Meses</h2>
+  <div class="roadmap">
+    <div class="roadmap-phase phase-q1">
+      <div class="roadmap-phase-title">🟢 Mes 1-2: Quick Wins</div>
+      <div class="roadmap-phase-sub">Implementación Inmediata</div>
+      <ul class="roadmap-items">
+        <li class="roadmap-item"><span class="roadmap-num">1</span><span>Optimizar homepage: mejorar CTA, agregar social proof (testimonios/ratings)</span></li>
+        <li class="roadmap-item"><span class="roadmap-num">2</span><span>Activar Instagram Shopping: importar catálogo, habilitarCompra directa</span></li>
+        <li class="roadmap-item"><span class="roadmap-num">3</span><span>Configurar Google Analytics + goals (compra, abandono carrito)</span></li>
+        <li class="roadmap-item"><span class="roadmap-num">4</span><span>Publicar IG en horarios óptimos (8-9 PM): aumentar engagement +15%</span></li>
+        <li class="roadmap-item"><span class="roadmap-num">5</span><span>Mejorar velocidad sitio: optimizar imágenes, minimizar JS/CSS</span></li>
+      </ul>
+    </div>
+    <div class="roadmap-phase phase-q2">
+      <div class="roadmap-phase-title">🟡 Mes 2-4: Proyectos</div>
+      <div class="roadmap-phase-sub">Implementación Estructural</div>
+      <ul class="roadmap-items">
+        <li class="roadmap-item"><span class="roadmap-num">6</span><span>Lanzar TikTok strategy: contenido lifestyle moda infantil, 2 vids/semana</span></li>
+        <li class="roadmap-item"><span class="roadmap-num">7</span><span>Setup email marketing: Klaviyo/Brevo, secuencias abandono carrito + post-compra</span></li>
+        <li class="roadmap-item"><span class="roadmap-num">8</span><span>SEO content: 4-6 artículos sobre "ropa premium niños", "moda sostenible kids"</span></li>
+        <li class="roadmap-item"><span class="roadmap-num">9</span><span>Reactivar Facebook: 2 posts/semana, testing ads $100-200 ARS/semana</span></li>
+        <li class="roadmap-item"><span class="roadmap-num">10</span><span>Influencer outreach: 3-5 micro-influencers mamás (10-100K seg)</span></li>
+      </ul>
+    </div>
+    <div class="roadmap-phase phase-q3">
+      <div class="roadmap-phase-title">🔵 Mes 4-6: Escalado</div>
+      <div class="roadmap-phase-sub">Optimización y Crecimiento</div>
+      <ul class="roadmap-items">
+        <li class="roadmap-item"><span class="roadmap-num">11</span><span>Analizar resultados TikTok: si 10K+ followers, escalar pauta a $500/mes</span></li>
+        <li class="roadmap-item"><span class="roadmap-num">12</span><span>Email marketing: analizar open rates, optimizar subject lines, A/B testing</span></li>
+        <li class="roadmap-item"><span class="roadmap-num">13</span><span>SEO: medir rankings de nuevas keywords, iteración de contenido</span></li>
+        <li class="roadmap-item"><span class="roadmap-num">14</span><span>Retargeting: pixelización completa, campañas dinámicas abandono carrito</span></li>
+        <li class="roadmap-item"><span class="roadmap-num">15</span><span>Planning Q3: roadmap siguiente, presupuesto 2027, nuevas iniciativas</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════ SCORECARD ════════════════════════ -->
+<div id="scorecard" class="section">
+  <div class="section-title">09. Scorecard de Salud Digital</div>
+  <h1 class="section-heading">Calificación 0–100 por Dimensión</h1>
+
+  <div class="grid-2">
+    <div style="display: flex; flex-direction: column; gap: 0;">
+      <div class="card" style="border-radius: 6px 6px 0 0; border-bottom: none; padding: 20px;">
+        <div id="scorecardRows"></div>
+      </div>
+    </div>
+    <div class="chart-wrap">
+      <div class="chart-title">Radar de Dimensiones</div>
+      <div class="chart-canvas-wrap">
+        <canvas id="radarScorecard"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <div style="background: var(--card); border: 1px solid var(--border); padding: 24px; border-radius: 6px;">
+    <h3 style="color: var(--text); font-size: 14px; margin-bottom: 16px; font-weight: 600;">Interpretación del Score 52/100</h3>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+      <div>
+        <h4 style="color: var(--yellow); font-size: 12px; margin-bottom: 8px; font-weight: 600;">🟡 Estado Actual: Necesita Mejora</h4>
+        <p style="color: var(--text); font-size: 13px; line-height: 1.6;">
+          La salud digital de Rum Rum Kids es <strong>intermedia</strong>. Instagram es fuerte (72/100), pero arrastra el promedio una web débil (30/100), Facebook inactivo (18/100) y TikTok sin explotar (28/100). El potencial es significativo.
+        </p>
+      </div>
+      <div>
+        <h4 style="color: var(--green); font-size: 12px; margin-bottom: 8px; font-weight: 600;">✓ Target: Excelente (75–85)</h4>
+        <p style="color: var(--text); font-size: 13px; line-height: 1.6;">
+          Con implementación de quick wins + proyectos estratégicos, proyectamos alcanzar <strong>75–80/100 en 6 meses</strong>. Focus: reducir bounce, activar TikTok, email marketing, SEO básico.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-brand">Rum Rum Kids · Auditoría Digital · Por Tomas Teloni</div>
+  <div class="footer-note">Análisis basado en fuentes públicas. Marzo 2026.</div>
+</div>
+
+<!-- ════════════════════════ JAVASCRIPT ════════════════════════ -->
+<script>
+// Función para mostrar secciones
+function showSection(event, id) {
+  event.preventDefault();
+  document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(el => el.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+  initCharts();
+}
+
+// Función para mostrar tabs de Redes Sociales
+function showSocialTab(event, id) {
+  event.preventDefault();
+  document.querySelectorAll('.social-foda').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.social-subnav-tab').forEach(el => el.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// Data para gráficos y tablas
+const DATA = {
+  healthScores: [
+    { label: 'E-commerce', score: 30, color: '#ef4444' },
+    { label: 'Instagram', score: 72, color: '#22c55e' },
+    { label: 'Facebook', score: 18, color: '#ef4444' },
+    { label: 'TikTok', score: 28, color: '#ef4444' },
+    { label: 'SEO', score: 38, color: '#f59e0b' },
+    { label: 'Contenido', score: 65, color: '#f59e0b' },
+    { label: 'Conversión', score: 35, color: '#ef4444' }
+  ],
+  social: [
+    { platform: '📷', name: 'Instagram', followers: '40K', score: 72, color: '#E1306C' },
+    { platform: 'f', name: 'Facebook', followers: '421', score: 18, color: '#1877F2' },
+    { platform: '♪', name: 'TikTok', followers: '~2K', score: 28, color: '#111827' }
+  ]
+};
+
+// Renderizar scorecard de dimensiones
+function buildScorecardRows() {
+  const container = document.getElementById('scorecardRows');
+  container.innerHTML = '';
+  DATA.healthScores.forEach(item => {
+    const row = document.createElement('div');
+    row.className = 'score-row';
+    row.innerHTML = `
+      <div class="score-label">${item.label}</div>
+      <div class="score-bar-wrap">
+        <div class="score-bar" style="width: ${item.score}%; background: ${item.color};"></div>
+      </div>
+      <div class="score-num">${item.score}</div>
+      <div class="score-status">${item.score >= 70 ? '✓' : item.score >= 40 ? '!' : '✗'}</div>
+    `;
+    container.appendChild(row);
+  });
+}
+
+// Renderizar social scorecard
+function buildSocialScorecard() {
+  const container = document.getElementById('socialScorecard');
+  if (!container) return;
+  container.innerHTML = '';
+  DATA.social.forEach(item => {
+    const row = document.createElement('div');
+    row.className = 'social-platform-row';
+    row.innerHTML = `
+      <div class="platform-icon">${item.platform}</div>
+      <div class="platform-name">${item.name}</div>
+      <div class="platform-followers">${item.followers}</div>
+      <div class="platform-bar-wrap">
+        <div class="platform-bar" style="width: ${item.score}%; background: ${item.color};"></div>
+      </div>
+      <div class="platform-score">${item.score}</div>
+    `;
+    container.appendChild(row);
+  });
+}
+
+// Gráficos Chart.js
+let chartsInitialized = false;
+
+function initCharts() {
+  if (chartsInitialized) return;
+  chartsInitialized = true;
+
+  // Radar Overview
+  new Chart(document.getElementById('radarOverview'), {
+    type: 'radar',
+    data: {
+      labels: ['E-commerce', 'Instagram', 'Facebook', 'TikTok', 'SEO', 'Contenido', 'Conversión'],
+      datasets: [{
+        label: 'Rum Rum Kids',
+        data: [30, 72, 18, 28, 38, 65, 35],
+        borderColor: '#c44b8a',
+        backgroundColor: 'rgba(196, 75, 138, 0.1)',
+        pointBackgroundColor: '#c44b8a',
+        fill: true
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: { r: { beginAtZero: true, max: 100, grid: { color: '#e8e0f5' }, ticks: { color: '#b8a8cc' } } }
+    }
+  });
+
+  // Bar Alcance (Fuentes Tráfico)
+  new Chart(document.getElementById('barAlcance'), {
+    type: 'bar',
+    data: {
+      labels: ['Búsqueda Orgánica', 'Directo', 'Referidos'],
+      datasets: [{
+        label: 'Tráfico %',
+        data: [45, 35, 20],
+        backgroundColor: ['#c44b8a', '#6366f1', '#22c55e']
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: { x: { beginAtZero: true, max: 100, grid: { color: '#e8e0f5' }, ticks: { color: '#b8a8cc' } }, y: { ticks: { color: '#b8a8cc' } } }
+    }
+  });
+
+  // Doughnut Dispositivos
+  new Chart(document.getElementById('doughnutDevices'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Mobile', 'Desktop'],
+      datasets: [{
+        data: [72, 28],
+        backgroundColor: ['#c44b8a', '#6366f1']
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: true, labels: { color: '#b8a8cc' } } }
+    }
+  });
+
+  // Bar SEO
+  new Chart(document.getElementById('barSEO'), {
+    type: 'bar',
+    data: {
+      labels: ['rum rum kids', 'ropa premium niños', 'moda infantil CABA'],
+      datasets: [{
+        label: 'Búsquedas est.',
+        data: [600, 450, 280],
+        backgroundColor: '#c44b8a'
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: { x: { grid: { color: '#e8e0f5' }, ticks: { color: '#b8a8cc' } }, y: { ticks: { color: '#b8a8cc' } } }
+    }
+  });
+
+  // Radar SEO
+  new Chart(document.getElementById('radarSEO'), {
+    type: 'radar',
+    data: {
+      labels: ['Keyword Research', 'On-page', 'Backlinks', 'Authority', 'Local'],
+      datasets: [{
+        label: 'SEO Health',
+        data: [25, 35, 20, 18, 40],
+        borderColor: '#f59e0b',
+        backgroundColor: 'rgba(245, 158, 11, 0.1)',
+        pointBackgroundColor: '#f59e0b'
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: { r: { beginAtZero: true, max: 100, grid: { color: '#e8e0f5' } } }
+    }
+  });
+
+  // Radar Competidores
+  new Chart(document.getElementById('radarCompetidores'), {
+    type: 'radar',
+    data: {
+      labels: ['Web Traffic', 'Instagram', 'Facebook', 'TikTok', 'SEO'],
+      datasets: [
+        {
+          label: 'Rum Rum Kids',
+          data: [30, 72, 18, 28, 38],
+          borderColor: '#c44b8a',
+          backgroundColor: 'rgba(196, 75, 138, 0.1)',
+          pointBackgroundColor: '#c44b8a'
+        },
+        {
+          label: 'Competidor Avg',
+          data: [55, 50, 45, 50, 45],
+          borderColor: '#6366f1',
+          backgroundColor: 'rgba(99, 102, 241, 0.05)',
+          pointBackgroundColor: '#6366f1'
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { labels: { color: '#b8a8cc' } } },
+      scales: { r: { beginAtZero: true, max: 100, grid: { color: '#e8e0f5' } } }
+    }
+  });
+
+  // Bar Competidores
+  new Chart(document.getElementById('barCompetidores'), {
+    type: 'bar',
+    data: {
+      labels: ['Web', 'Social', 'SEO', 'Reputación', 'Conversión'],
+      datasets: [
+        {
+          label: 'Rum Rum',
+          data: [30, 48, 38, 85, 35],
+          backgroundColor: '#c44b8a'
+        },
+        {
+          label: 'Compet Avg',
+          data: [55, 50, 45, 70, 50],
+          backgroundColor: '#cbd5e1'
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { labels: { color: '#b8a8cc' } } },
+      scales: { y: { beginAtZero: true, max: 100, grid: { color: '#e8e0f5' }, ticks: { color: '#b8a8cc' } }, x: { ticks: { color: '#b8a8cc' } } }
+    }
+  });
+
+  // Radar Scorecard
+  new Chart(document.getElementById('radarScorecard'), {
+    type: 'radar',
+    data: {
+      labels: ['E-commerce', 'Instagram', 'Facebook', 'TikTok', 'SEO', 'Contenido', 'Conversión'],
+      datasets: [{
+        label: 'Salud Digital',
+        data: [30, 72, 18, 28, 38, 65, 35],
+        borderColor: '#c44b8a',
+        backgroundColor: 'rgba(196, 75, 138, 0.1)',
+        pointBackgroundColor: '#c44b8a'
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: { r: { beginAtZero: true, max: 100, grid: { color: '#e8e0f5' }, ticks: { color: '#b8a8cc' } } }
+    }
+  });
+}
+
+// Inicializar en carga
+document.addEventListener('DOMContentLoaded', () => {
+  buildScorecardRows();
+  buildSocialScorecard();
+  initCharts();
+});
+</script>
+
+</body>
+</html>
